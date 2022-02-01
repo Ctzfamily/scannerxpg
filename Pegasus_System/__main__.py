@@ -1,12 +1,12 @@
-from Lovely_System import (
+from Pegasus_System import (
     System,
     system_cmd,
     make_collections,
     INSPECTORS,
     ENFORCERS,
-    Lovely_logs,
+    Pegasus_logs,
 )
-from Lovely_System.strings import on_string
+from Pegasus_System.strings import on_string
 import logging
 import importlib
 import asyncio
@@ -16,7 +16,7 @@ logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
 )
 
-from Lovely_System.plugins import to_load
+from Pegasus_System.plugins import to_load
 
 HELP = {}
 IMPORTED = {}
@@ -24,7 +24,7 @@ FAILED_TO_LOAD = {}
 
 for load in to_load:
     try:
-        imported = importlib.import_module("Lovely_System.plugins." + load)
+        imported = importlib.import_module("Pegasus_System.plugins." + load)
         if not hasattr(imported, "__plugin_name__"):
             imported.__plugin_name__ = imported.__name__
 
@@ -108,9 +108,9 @@ async def main():
         msg = "Few plugins failed to load:"
         for plugin in FAILED_TO_LOAD:
             msg += f"\n**{plugin}**\n\n`{FAILED_TO_LOAD[plugin]}`"
-        await System.send_message(Lovely_logs, msg)
+        await System.send_message(Pegasus_logs, msg)
     else:
-        await System.send_message(Lovely_logs, "Alive!")
+        await System.send_message(Pegasus_logs, "Alive!")
     await System.run_until_disconnected()
 
 
