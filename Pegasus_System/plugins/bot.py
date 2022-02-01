@@ -1,7 +1,7 @@
-from Lovely_System import System, session, INSPECTORS, ENFORCERS, Lovely_logs
-from Lovely_System.strings import proof_string, scan_request_string, reject_string
-from Lovely_System.plugins.Mongo_DB.gbans import get_gban, get_gban_by_proofid
-import Lovely_System.plugins.Mongo_DB.bot_settings as db
+from Pegasus_System import System, session, INSPECTORS, ENFORCERS, Pegasus_logs
+from Pegasus_System.strings import proof_string, scan_request_string, reject_string
+from Pegasus_System.plugins.Mongo_DB.gbans import get_gban, get_gban_by_proofid
+import Pegasus_System.plugins.Mongo_DB.bot_settings as db
 
 from telethon import events, custom
 
@@ -43,7 +43,7 @@ async def make_proof(user: Union[str, int]):
 
 @System.bot.on(events.NewMessage(pattern="[/!]start"))
 async def sup(event):
-    await event.reply("Hello I'm Pegasus X Scanner I'm made for public safety`s")
+    await event.reply("Hello I'm Pegasus X Scanner I'm made for public safety`s More details hit /help")
 
 
 
@@ -155,7 +155,7 @@ async def inline_handler(event):
     split = query.split(" ", 1)
     if event.query.user_id not in INSPECTORS:
         result = builder.article(
-            "Lovely System", text="You don't have access to this cmd."
+            "Pegasus System", text="You don't have access to this cmd."
         )
         await event.answer([result])
         return
