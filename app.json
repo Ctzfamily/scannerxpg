@@ -1,0 +1,92 @@
+
+{
+      "name": "Lovely Scanner",
+      "description": "Telegram Spam handling System.",
+      "logo": "https://telegra.ph/file/ce3c1cb894516eda5bf26.jpg",
+      "keywords": [
+         "telegram",
+         "Spam",
+         "handling",
+         "System",
+         "Lovely Scanner"
+      ],   
+   "repository": "https://github.com/Hodacka/LovelyXSystem",
+   "addons": [
+      {
+         "options": {
+            "version": "13"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
+
+
+   "env": {
+      "BOT_TOKEN": {
+         "description": "Your bot token. Get one from @BotFather duh",
+         "required": true,
+         "value": ""
+      },
+      "API_ID_KEY": {
+         "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
+         "required": true,
+         "value": ""
+      },
+      "API_HASH_KEY": {
+         "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
+         "required": true,
+         "value": ""
+      },    
+      "STRING_SESSION": {
+         "description": " You can get this by doing python3 generatestringsession.py on Linux and Mac, If on windows just python will work.",
+         "required": true,
+         "value": ""
+      },      
+      "Lovely": {
+         "description": "Users who approve gbans, manage blacklist etc.",
+         "required": true,
+         "value": ""
+      },
+      "INSPECTORS": {
+         "description": "Users who Approve Gban Request.",
+         "required": true,
+         "value": ""
+      },
+         "ENFORCERS": {
+         "description": "Users who send gban request.",
+         "required": true,
+         "value": ""
+      },
+      "HEROKU_API_KEY": {
+        "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
+        "required": true,
+        "value": ""
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Enter the Heroku app name here (Must an exact same name with your input above).",
+        "required": true,
+        "value": ""
+      },
+       "MONGO_DB_URL": {
+         "description": " Put ur Mongo Db.",
+         "required": true,
+         "value": ""
+      },
+      "Lovely_logs": {
+      "description": "  In this group all scan request come",
+         "required": true,
+         "value": ""
+   },      
+      "Lovely_approved_logs": {
+         "description": "When approved it sends a message there.",
+         "required": true,
+         "value": ""
+      },
+      "GBAN_MSG_LOGS": {
+         "description": "Where to gban user, Set to None and it will send /gban in Lovely_logs",
+         "required": true,
+         "value": ""
+      }
+      
+   }
+}
