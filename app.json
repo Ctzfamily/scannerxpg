@@ -1,6 +1,6 @@
 
 {
-      "name": "Lovely Scanner",
+      "name": "Pegasus X Scanner",
       "description": "Telegram Spam handling System.",
       "logo": "https://telegra.ph/file/ce3c1cb894516eda5bf26.jpg",
       "keywords": [
@@ -8,7 +8,7 @@
          "Spam",
          "handling",
          "System",
-         "Lovely Scanner"
+         "Pegasus X Scanner"
       ],   
    "repository": "https://github.com/Hodacka/LovelyXSystem",
    "addons": [
@@ -42,7 +42,7 @@
          "required": true,
          "value": ""
       },      
-      "Lovely": {
+      "Master": {
          "description": "Users who approve gbans, manage blacklist etc.",
          "required": true,
          "value": ""
@@ -72,18 +72,18 @@
          "required": true,
          "value": ""
       },
-      "Lovely_logs": {
-      "description": "  In this group all scan request come",
+      "Pegasus_logs": {
+      "description": "  In this group all scan request come ID",
          "required": true,
          "value": ""
    },      
-      "Lovely_approved_logs": {
-         "description": "When approved it sends a message there.",
+      "Pegasus_approved_logs": {
+         "description": "When approved it sends a message there ID.",
          "required": true,
          "value": ""
       },
       "GBAN_MSG_LOGS": {
-         "description": "Where to gban user, Set to None and it will send /gban in Lovely_logs",
+         "description": "Where to send /gban in scanner ID",
          "required": true,
          "value": ""
       }
