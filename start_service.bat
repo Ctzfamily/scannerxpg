@@ -27,5 +27,5 @@ if '%errorlevel%' NEQ '0' (
 :--------------------------------------
 :: your commands begin from this point.
 :: stops the service and then starts it 
-net stop Lovely_System
-net start Lovely_System
+net stop Pegasus_System
+net start Pegasus_System
