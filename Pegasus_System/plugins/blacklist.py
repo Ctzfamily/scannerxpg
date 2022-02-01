@@ -1,7 +1,7 @@
-from Lovely_System import System, Lovely, ENFORCERS, Lovely_logs, system_cmd
+from Pegasus_System import System, Master , ENFORCERS, Pegasus_logs, system_cmd
 import re
-import Lovely_System.plugins.Mongo_DB.message_blacklist as db
-import Lovely_System.plugins.Mongo_DB.name_blacklist as wlc_collection
+import Pegasus_System.plugins.Mongo_DB.message_blacklist as db
+import Pegasus_System.plugins.Mongo_DB.name_blacklist as wlc_collection
 from telethon import events
 
 
@@ -81,9 +81,9 @@ async def listbl(event):
 @System.bot.on(events.NewMessage(incoming=True))
 async def auto_gban_request(event):
     System.processing += 1
-    if event.from_id.user_id in ENFORCERS or event.from_id.user_id in Lovely:
+    if event.from_id.user_id in ENFORCERS or event.from_id.user_id in Master:
         return
-    if event.chat_id == Lovely_logs:
+    if event.chat_id == Pegasus_logs:
         return
     text = event.text
     words = await db.get_blacklist()
@@ -98,7 +98,7 @@ async def auto_gban_request(event):
                     else f"Occurred in Private Chat - {event.chat.title}"
                 )
                 logmsg = f"""$AUTOSCAN\n**Scanned user:** [{event.from_id.user_id}](tg://user?id={event.from_id.user_id})\n**Reason:** 0x{c}\n**Chat:** {link}\n**Hue Color:** Yellow-green\n**Message:** {event.text}"""
-                await System.send_message(Lovely_logs, logmsg)
+                await System.send_message(Pegasus_logs, logmsg)
                 System.processed += 1
                 System.processing -= 1
                 return
@@ -110,7 +110,7 @@ async def auto_gban_request(event):
 async def auto_wlc_gban(event):
     System.processing += 1
     user = await event.get_user()
-    if user.id in ENFORCERS or user.id in Lovely:
+    if user.id in ENFORCERS or user.id in Master:
         return
     words = await wlc_collection.get_wlc_bl()
     if words:
@@ -122,7 +122,7 @@ async def auto_wlc_gban(event):
             if re.search(pattern, text, flags=re.IGNORECASE):
                 c = words.index(word)
                 logmsg = f"""$AUTOSCAN\n**Scanned user:** [{user.id}](tg://user?id={user.id})\n**Reason:** 1x{c}\n**User joined and blacklisted string in name**\n**Matched String:** {word}\n"""
-                await System.send_message(Lovely_logs, logmsg)
+                await System.send_message(Pegasus_logs, logmsg)
                 System.processed += 1
                 System.processing -= 1
                 return
