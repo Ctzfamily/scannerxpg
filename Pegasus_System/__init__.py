@@ -27,26 +27,26 @@ if ENV:
     STRING_SESSION = os.environ.get("STRING_SESSION")
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-    RAW_Lovely = os.environ.get("Skynet", "")
+    RAW_Master = os.environ.get("Skynet", "")
     RAW_ENFORCERS = os.environ.get("ENFORCERS", "")
-    Lovely = [int(x) for x in os.environ.get("Lovely", "").split()]
+    Master = [int(x) for x in os.environ.get("Master", "").split()]
     INSPECTORS = [int(x) for x in os.environ.get("INSPECTORS", "").split()]
     ENFORCERS = [int(x) for x in os.environ.get("ENFORCERS", "").split()]
     MONGO_DB_URL = os.environ.get("MONGO_DB_URL")
-    Lovely_logs = int(os.environ.get("Lovely_logs"))
-    Lovely_approved_logs = int(os.environ.get("Lovely_approved_logs"))
+    Pegasus_logs = int(os.environ.get("Pegasus_logs"))
+    Pegasus_approved_logs = int(os.environ.get("Pegasus_approved_logs"))
     GBAN_MSG_LOGS = int(os.environ.get("GBAN_MSG_LOGS"))
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
 else:
-    import Lovely_System.config as Config
+    import Pegasus_System.config as Config
 
     API_ID_KEY = Config.API_ID
     API_HASH_KEY = Config.API_HASH
     STRING_SESSION = Config.STRING_SESSION
     MONGO_DB_URL = Config.MONGO_DB_URL
-    with open(os.path.join(os.getcwd(), "Lovely_System/elevated_users.json"), "r") as f:
+    with open(os.path.join(os.getcwd(), "Pegasus_System/elevated_users.json"), "r") as f:
         data = json.load(f)
-    Lovely = data["Lovely"]
+    Master = data["Master"]
     ENFORCERS = data["ENFORCERS"]
     INSPECTORS = data["INSPECTORS"]
     Lovely_logs = Config.Lovely_logs
@@ -61,10 +61,10 @@ session = aiohttp.ClientSession()
 
 MONGO_CLIENT = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 
-from .client_class import LovelyClient
+from .client_class import PgClient
 
 #try:
-System = LovelyClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+System = PgClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 #except:
  #   print(traceback.format_exc())
   #  exit(1)
@@ -96,7 +96,7 @@ async def make_collections() -> str:
     if await collection.count_documents({"_id": 4}, limit=1) == 0:  # Rank tree list
         sample_dict = {"_id": 4, "data": {}, "standalone": {}}
         sample_dict["data"] = {}
-        for x in Lovely:
+        for x in Master:
             sample_dict["data"][str(x)] = {}
             sample_dict["standalone"][str(x)] = {
                 "added_by": 777000,
@@ -122,10 +122,10 @@ def system_cmd(
         args["pattern"] = re.compile(r"[\?\.!]" + pattern)
     if allow_Lovely and allow_enforcer:
         args["from_users"] = ENFORCERS
-    elif allow_inspectors and allow_Lovely:
+    elif allow_inspectors and allow_Master:
         args["from_users"] = INSPECTORS
     else:
-        args["from_users"] = Lovely
+        args["from_users"] = Master
     if force_reply:
         args["func"] = lambda e: e.is_reply
     return events.NewMessage(**args)
