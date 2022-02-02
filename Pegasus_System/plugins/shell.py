@@ -1,4 +1,4 @@
-from Lovely_System import system_cmd, System
+from Pegasus_System import system_cmd, System
 import asyncio
 import io
 
