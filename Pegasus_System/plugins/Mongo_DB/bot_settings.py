@@ -1,7 +1,7 @@
-from Lovely_System import MONGO_CLIENT
+from Pegasus_System import MONGO_CLIENT
 from typing import Optional, Dict, Union
 
-db = MONGO_CLIENT["LovelySystemRobot"]["Main"]
+db = MONGO_CLIENT["PegasusSystemRobot"]["Main"]
 
 async def get_chat(chat: int) -> Optional[Dict[str, Union[str, int]]]:
     settings = await db.find_one({'chat_id': chat})
