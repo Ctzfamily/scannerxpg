@@ -9,16 +9,16 @@ from telethon.tl.functions.channels import LeaveChannelRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 
-from Lovely_System.plugins.Mongo_DB.tree import add_inspector, add_enforcers, get_data
-from Lovely_System import ENFORCERS, INSPECTORS, Lovely, session
-from Lovely_System import System, system_cmd
-from Lovely_System import Lovely_logs
+from Pegasus_System.plugins.Mongo_DB.tree import add_inspector, add_enforcers, get_data
+from Pegasus_System import ENFORCERS, INSPECTORS, Master, session
+from Pegasus_System import System, system_cmd
+from Pegasus_System import Pegasus_logs
 
 from datetime import datetime
 from urllib.parse import urlparse, urlunparse
 
 try:
-    from Lovely_System import HEROKU_API_KEY, HEROKU_APP_NAME
+    from Pegasus_System import HEROKU_API_KEY, HEROKU_APP_NAME
 
     heroku_conn = heroku3.from_key(HEROKU_API_KEY)
     app = heroku_conn.app(HEROKU_APP_NAME)
@@ -27,7 +27,7 @@ try:
 except BaseException:
     HEROKU = False
 
-json_file = os.path.join(os.getcwd(), "Lovely_System\elevated_users.json")
+json_file = os.path.join(os.getcwd(), "Pegasus_System\elevated_users.json")
 
 
 @System.on(system_cmd(pattern=r"addenf", allow_inspectors=True))
@@ -136,14 +136,14 @@ async def join(event) -> None:
         await System(ImportChatInviteRequest(private.group(5)))
         await System.send_message(event.chat_id, "Joined chat!")
         await System.send_message(
-            Lovely_logs,
+            Pegasus_logs,
             f"{(await event.get_sender()).first_name} made Scanner joined {private.group(5)}",
         )
     else:
         await System(JoinChannelRequest(link))
         await System.send_message(event.chat_id, "Joined chat!")
         await System.send_message(
-            Lovely_logs,
+            Pegasus_logs,
             f"{(await event.get_sender()).first_name} made Lovely join {link}",
         )
 
@@ -226,7 +226,7 @@ async def rmins(event) -> None:
     )
 
 
-@System.on(system_cmd(pattern=r"info ", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"info", allow_inspectors=True))
 async def info(event) -> None:
     data = (await get_data())["standalone"]
     if not event.text.split(" ", 1)[1] in data.keys():
@@ -283,14 +283,14 @@ async def leave(event) -> None:
     if c_id:
         await System(LeaveChannelRequest(int(c_id.group(0))))
         await System.send_message(
-            event.chat_id, f"Lovely has left chat with id[-{c_id.group(1)}]"
+            event.chat_id, f"Scanner has left chat with id[-{c_id.group(1)}]"
         )
     else:
         await System(LeaveChannelRequest(link))
         await System.send_message(event.chat_id, f"Lovely has left chat[{link}]")
 
 
-@System.on(system_cmd(pattern=r"get_redirect ", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"get_redirect", allow_inspectors=True))
 async def redirect(event) -> None:
     try:
         of = event.text.split(" ", 1)[1]
