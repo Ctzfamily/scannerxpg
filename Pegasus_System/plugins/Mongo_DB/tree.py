@@ -1,8 +1,8 @@
-from Lovely_System import MONGO_CLIENT
+from Pegasus_System import MONGO_CLIENT
 from datetime import datetime
 from random import choice
 
-db = MONGO_CLIENT["Lovely"]["Main"]
+db = MONGO_CLIENT["Pegasus"]["Main"]
 
 
 async def get_data() -> dict:
@@ -10,11 +10,11 @@ async def get_data() -> dict:
     return data
 
 
-async def add_inspector(Lovely: int, inspector: int) -> True:
+async def add_inspector(Master: int, inspector: int) -> True:
     data = await get_data()
-    data["data"][str(Lovely)][str(inspector)] = []
+    data["data"][str(Master)][str(inspector)] = []
     data["standalone"][str(inspector)] = {
-        "addedby": Lovely,
+        "addedby": Master,
         "timestamp": datetime.timestamp(datetime.now()),
     }
     await db.replace_one(await get_data(), data)
