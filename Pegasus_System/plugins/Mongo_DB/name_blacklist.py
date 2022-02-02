@@ -1,6 +1,6 @@
-from Lovely_System import MONGO_CLIENT
+from Pegasus_System import MONGO_CLIENT
 
-db = MONGO_CLIENT["Lovely"]["Main"]
+db = MONGO_CLIENT["Pegasus"]["Main"]
 
 
 async def update_wlc_blacklist(word, add=False):
