@@ -1,10 +1,10 @@
-from Lovely_System import System, system_cmd
+from Pegasus_System import System, system_cmd
 import os
 import sys
 import subprocess
 
 
-@System.on(system_cmd(pattern=r"Lovely gitpull"))
+@System.on(system_cmd(pattern=r"gitpull"))
 async def gitpull(event):
     subprocess.Popen("git pull", stdout=subprocess.PIPE, shell=True)
     await event.reply("Git pulled probably.")
@@ -12,7 +12,7 @@ async def gitpull(event):
     os.execv("start.bat", sys.argv)
 
 
-@System.on(system_cmd(pattern=r"Lovely restart"))
+@System.on(system_cmd(pattern=r"restart"))
 async def reboot(event):
     if event.fwd_from:
         return
@@ -22,7 +22,7 @@ async def reboot(event):
     sys.exit()
 
 
-@System.on(system_cmd(pattern=r"Lovely shutdown"))
+@System.on(system_cmd(pattern=r"shutdown"))
 async def shutdown(event):
     if event.fwd_from:
         return
