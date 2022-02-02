@@ -86,7 +86,7 @@ async def scan(event, flags):
         if message.from_id.user_id in ENFORCERS:
             return
         msg = await System.send_message(
-            Lovely_logs,
+            Pegasus_logs,
             scan_request_string.format(
                 enforcer=executor,
                 spammer=message.from_id.user_id,
