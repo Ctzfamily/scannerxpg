@@ -54,7 +54,7 @@ else:
     GBAN_MSG_LOGS = Config.GBAN_MSG_LOGS
     BOT_TOKEN = Config.BOT_TOKEN
 
-INSPECTORS.extend(Lovely)
+INSPECTORS.extend(Master)
 ENFORCERS.extend(INSPECTORS)
 
 session = aiohttp.ClientSession()
