@@ -1,8 +1,8 @@
-from Lovely_System import MONGO_CLIENT
+from Pegasus_System import MONGO_CLIENT
 from typing import Optional, Dict, Union
 from datetime import datetime
 
-db = MONGO_CLIENT["Lovely"]["Main"]
+db = MONGO_CLIENT["Pegasus"]["Main"]
 
 
 async def get_gban(user: int) -> Optional[Dict[str, Union[str, int]]]:
