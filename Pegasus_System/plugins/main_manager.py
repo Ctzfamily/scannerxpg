@@ -1,14 +1,14 @@
 import re
 
-from Lovely_System import Lovely_logs, ENFORCERS, Lovely, INSPECTORS
-from Lovely_System.strings import (
+from Pegasus_System import Pegasus_logs, ENFORCERS, Master, INSPECTORS
+from Pegasus_System.strings import (
     scan_request_string,
     reject_string,
     proof_string,
     forced_scan_string,
 )
-from Lovely_System import System, system_cmd
-from Lovely_System.utils import seprate_flags, Flag
+from Pegasus_System import System, system_cmd
+from Pegasus_System.utils import seprate_flags, Flag
 
 
 url_regex = re.compile("(http(s)?://)?t.me/(c/)?(\w+)/(\d+)")
@@ -102,7 +102,7 @@ async def scan(event, flags):
         if replied.fwd_from:
             reply = replied.fwd_from
             target = reply.from_id.user_id
-            if reply.from_id.user_id in ENFORCERS or reply.from_id.user_id in Lovely:
+            if reply.from_id.user_id in ENFORCERS or reply.from_id.user_id in Master:
                 return
             if not reply.from_id.user_id:
                 await event.reply("Cannot get user ID.")
@@ -125,7 +125,7 @@ async def scan(event, flags):
     else:
         approve = False
     if replied.media:
-        await replied.forward_to(Lovely_logs)
+        await replied.forward_to(Pegasus_logs)
     executor = f"[{executer.first_name}](tg://user?id={executer.id})"
     chat = (
         f"t.me/{event.chat.username}/{event.message.id}"
@@ -134,13 +134,13 @@ async def scan(event, flags):
     )
     await event.reply("Connecting to Lovely for a cymatic scan.")
     if req_proof and req_user:
-        await replied.forward_to(Lovely_logs)
+        await replied.forward_to(Pegasus_logs)
         await System.gban(
             executer.id, req_user, reason, msg.id, executer, message=replied.text
         )
     if not approve:
         msg = await System.send_message(
-            Lovely_logs,
+            Pegasus_logs,
             scan_request_string.format(
                 enforcer=executor,
                 spammer=sender,
@@ -151,7 +151,7 @@ async def scan(event, flags):
         )
         return
     msg = await System.send_message(
-        Lovely_logs,
+        Pegasus_logs,
         forced_scan_string.format(
             ins=executor, spammer=sender, chat=chat, message=replied.text, reason=reason
         ),
@@ -178,7 +178,7 @@ async def revive(event):
     await a.edit("Revert request sent to Lovely. This might take 10minutes or so.")
 
 
-@System.on(system_cmd(pattern=r"Lovely logs"))
+@System.on(system_cmd(pattern=r"logs"))
 async def logs(event):
     await System.send_file(event.chat_id, "log.txt")
 
@@ -248,7 +248,7 @@ async def approve(event, flags):
             else:
                 id1 = list[0]
                 id2 = re.findall(r"(\d+)", replied.text)[1]
-            if id1 in ENFORCERS or Lovely:
+            if id1 in ENFORCERS or Master:
                 enforcer = id1
                 scam = id2
             else:
@@ -297,7 +297,7 @@ async def reject(event):
         if match:
             # print('Matched OmU')
             id = replied.id
-            await System.edit_message(Lovely_logs, id, reject_string)
+            await System.edit_message(Pegasus_logs, id, reject_string)
     orig = re.search(r"t.me/(\w+)/(\d+)", replied.text)
     _orig = re.search(r"t.me/c/(\w+)/(\d+)", replied.text)
     flags, reason = seprate_flags(event.text)
