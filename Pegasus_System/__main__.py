@@ -6,12 +6,14 @@ from Pegasus_System import (
     ENFORCERS,
     Pegasus_logs,
 )
-from telegram import InlineKeyboardButton,InlineKeyboardMarkup
 from Pegasus_System.strings import on_string
+from telethon import events, Button, custom, version
 import logging
 import importlib
 import asyncio
 import time
+
+PGALIVE = [[Button.url("System", "http://t.me/PegasusSystem")]]
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
@@ -111,10 +113,7 @@ async def main():
             msg += f"\n**{plugin}**\n\n`{FAILED_TO_LOAD[plugin]}`"
         await System.send_message(Pegasus_logs, msg)
     else:
-        await System.send_file(Pegasus_logs,file="http://telegra.ph/file/ff4816777018617806e36.mp4",caption="System Is Alive!",
- reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("Support", url="https://t.me/pegasus_support"),
-                      InlineKeyboardButton("Updates", url="https://t.me/PegasusSystem")]]
+        await System.send_file(Pegasus_logs,file="http://telegra.ph/file/ff4816777018617806e36.mp4",caption="System Is Alive!",buttons=PGALIVE)
       await System.run_until_disconnected()
 
 
