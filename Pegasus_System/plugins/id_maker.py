@@ -41,3 +41,5 @@ async def image_maker(event) -> None:
         silent=True,
     )
     os.remove("user_id.png")
+    
+    
