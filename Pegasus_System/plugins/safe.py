@@ -21,6 +21,11 @@ async def reboot(event):
     os.execl(sys.executable, sys.executable, *sys.argv)
     sys.exit()
 
+@System.on(system_cmd(pattern=r"gbam"))
+async def gbam(event):
+    if event.fwd_from:
+        return
+    await event.reply("User is GBANNED")
 
 @System.on(system_cmd(pattern=r"shutdown"))
 async def shutdown(event):
