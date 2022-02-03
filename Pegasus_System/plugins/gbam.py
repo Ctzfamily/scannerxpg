@@ -1,4 +1,5 @@
 from Pegasus_System import system_cmd, System
+import random
 
 GBAM_MSG = ( "Fucking with bots",
              "play with gey's",
