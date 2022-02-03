@@ -114,7 +114,7 @@ async def main():
         await System.send_message(Pegasus_logs, msg)
     else:
         await System.send_file(Pegasus_logs,file="http://telegra.ph/file/ff4816777018617806e36.mp4",caption="System Is Alive!",buttons=PGALIVE)
-      await System.run_until_disconnected()
+       await System.run_until_disconnected()
 
 
 if __name__ == "__main__":
