@@ -43,7 +43,7 @@ async def make_proof(user: Union[str, int]):
 
 @System.bot.on(events.NewMessage(pattern="[/!]start"))
 async def sup(event):
-    await event.reply_file(file="http://telegra.ph/file/ff4816777018617806e36.mp4",caption="Hello I'm Pegasus X Scanner I'm made for public safety`s More details hit /help",)
+    await event.reply("Hello I'm Pegasus X Scanner I'm made for public safety`s More details hit /help",)
 
 
 
