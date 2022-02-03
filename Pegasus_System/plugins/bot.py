@@ -3,7 +3,10 @@ from Pegasus_System.strings import proof_string, scan_request_string, reject_str
 from Pegasus_System.plugins.Mongo_DB.gbans import get_gban, get_gban_by_proofid
 import Pegasus_System.plugins.Mongo_DB.bot_settings as db
 
-from telethon import events, custom
+from telethon import events, Button, custom, version
+
+PGALIVE = [[Button.url("System", "http://t.me/PegasusSystem")]]
+
 
 from typing import Union
 import logging
@@ -43,7 +46,7 @@ async def make_proof(user: Union[str, int]):
 
 @System.bot.on(events.NewMessage(pattern="[/!]start"))
 async def sup(event):
-    await event.reply("Hello I'm Pegasus X Scanner I'm made for public safety`s More details hit /help",)
+    await event.reply("Hello I'm Pegasus X Scanner I'm made for public safety`s More details hit /help",buttons=PGALIVE)
 
 
 
