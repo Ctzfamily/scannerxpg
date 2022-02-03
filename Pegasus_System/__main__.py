@@ -115,8 +115,7 @@ async def main():
  reply_markup=InlineKeyboardMarkup(
                     [[InlineKeyboardButton("Support", url="https://t.me/pegasus_support"),
                       InlineKeyboardButton("Updates", url="https://t.me/PegasusSystem")]]
-   
-         await System.run_until_disconnected()
+      await System.run_until_disconnected()
 
 
 if __name__ == "__main__":
