@@ -117,11 +117,9 @@ async def main():
                             InlineKeyboardButton(
                                 "Support", url="https://t.me/pegasus_support"),
                             InlineKeyboardButton(
-                                "Updates", url="https://t.me/PegasusSystem")
-                        ],
-                    ]
-                )
-    await System.run_until_disconnected()
+                                "Updates", url="https://t.me/PegasusSystem"),]])
+   
+         await System.run_until_disconnected()
 
 
 if __name__ == "__main__":
